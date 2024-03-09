@@ -1,0 +1,319 @@
+/*#include "北辰/KittyMemory.h"
+
+
+void xa搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+if (strstr(buff, "r-xp") != NULL && !feof(fp) && strstr(buff,"/data/app/")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 3567){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 3567){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void a搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+        if (strstr(buff, "rw") != NULL && !feof(fp) && (strlen(buff) < 42)) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void CHeap搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"[heap]")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void CData搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"/data/app/")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void CBss搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"[anon:.bss]")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void CAlloc搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"[anon:libc_malloc]")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void V搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff, "/dev/kgsl-3d0")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void Other搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"[anon:thread signal stack]")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void Bed搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"kgsl-3d0")) {
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void codesystem搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"/system"))
+		{
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void stack搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"[stack]"))
+		{
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void ashmem搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp) && strstr(buff,"/dev/ashmem/") && !strstr(buff,"dalvik"))
+		{
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}
+void all搜索例子() {
+    char buff[256];
+    FILE *fp;
+    fp = fopen("/proc/self/maps", "r");
+    DWORD *baddr = NULL, *eaddr = NULL;
+    while (!feof(fp)) {
+        fgets(buff, sizeof(buff), fp);
+		if (strstr(buff, "rw") != NULL && !feof(fp))
+		{
+            sscanf(buff, "%lx-%lx ", &baddr, &eaddr);
+            while (baddr < eaddr - 1){
+                baddr++;
+                if (*(int *)baddr == 9875){
+                    *(int *)baddr = 0;
+                    LOGE("x8搜索到%lx-%lx", baddr, eaddr);
+                }
+                if (*((int *)baddr + 1) == 9875){
+                    *((int *)baddr + 1) = 0;
+                    LOGE("x4搜索到%lx-%lx", baddr, eaddr);
+                }
+            }
+        }
+    }
+    fclose(fp);
+}*/
